@@ -31,9 +31,13 @@ public class LinkedList<T> implements Iterable<T>, Iterator<T>{
 
     @Override
     public T next() {
-        T returnValue = next.getValue();
-        next = next.getNext();
-        return returnValue;
+        if(hasNext()) {
+            T returnValue = next.getValue();
+            next = next.getNext();
+            return returnValue;
+        }else{
+            return null;
+        }
     }
 
     @Override
@@ -110,19 +114,20 @@ public class LinkedList<T> implements Iterable<T>, Iterator<T>{
 
         while(current != null) {
             if(current == value) {
-
+                if(current == head) {
+                    removeFirst();
+                } else if (current == tail) {
+                    removeLast();
+                } else {
+                    last.setNext(current.getNext());
+                    countOfNodes--;
+                }
+                break;
             }
             last = current;
             current = current.getNext();
         }
-        if (countOfNodes == 1) {
-            head = last;
-            tail = last;
-        } else if(current == head) {
-            head = last;
-        } else if (current == tail) {
-            tail = last;
-        }
+
 
     }
 

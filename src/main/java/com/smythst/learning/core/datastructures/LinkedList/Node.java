@@ -13,6 +13,10 @@ public class Node<T> {
 
     }
 
+    public Node() {
+        value = null;
+        next = null;
+    }
     public Node(T initialValue) {
         value = initialValue;
     }
