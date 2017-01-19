@@ -99,15 +99,31 @@ public class LinkedList<T> implements Iterable<T>, Iterator<T>{
     }
 
     public void remove(Node<T> value) {
+
+        //empty list, do nothing
         if(countOfNodes == 0) {
             return;
         }
+        //set up the loop, need to keep track of previous node
+        Node<T> current = head;
+        Node<T> last = current;
 
-        for(T nodeValue : this) {
-            if (nodeValue.equals(value)) {
-                if()
+        while(current != null) {
+            if(current == value) {
+
             }
+            last = current;
+            current = current.getNext();
         }
+        if (countOfNodes == 1) {
+            head = last;
+            tail = last;
+        } else if(current == head) {
+            head = last;
+        } else if (current == tail) {
+            tail = last;
+        }
+
     }
 
     public int getCountOfNodes() {
